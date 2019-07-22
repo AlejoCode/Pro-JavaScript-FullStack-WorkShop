@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>2nd</title>
+    <style>
+            .child {
+                width: 200px;
+                height: 200px;
+                background: #998b8b;
+                display: inline-block;
+                margin-right: 10px;
+                border: 1px solid #aaaaaa;
+            }
+            .blue {
+                background: #0000ff;
+                border: 1px solid #000000;
+            }
+            .red {
+                background: #ff0000;
+                border: 1px solid #000000;
+            }
+            .green {
+                width: 1000px;
+                background:green;
+                border: 1px solid #000000;
+            }
+    
+        </style>
+  </head>
+  <body>
+      <div class="container">
+          
+          <div class="row">
+            <div class="col-12 mt-3 text-center">
+                    <h1>Div Creator!</h1>
+                    <hr>
+            </div>
+          </div>
+      </div>
+    <div class="container">
+        <div class="row">
+            <section id=father>
+                   
+            </section>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <hr>
+        <div class="row">
+
+                <div class="col-3">
+                    <button onclick="createDiv()" type="button" class="btn btn-outline-primary">Create a div</button>
+                </div>
+                <div class="col-3">
+                        <button onclick="DeleteAllDivs()" type="button" class="btn btn-outline-danger">Delete ALL div's</button>
+                </div>
+                <div class="col-3">
+                        <button onclick="DeleteAllOddDivs()" type="button" class="btn btn-outline-danger">Delete ALL ODD div's</button>
+                </div>
+                <div class="col-3 ">
+                        <div class="input-group mb-3 ">
+                                <div class="input-group-prepend">
+                                  <!-- <span class="input-group-text" id="basic-addon1">Delete the DIV :</span> -->
+                                  <button onclick="DeleteSelectedDiv()" type="button" class="btn btn-outline-danger ml-3">Delete div</button>
+
+                                </div>
+                                <input id="selectedDiv" type="text" class="form-control" placeholder="div" aria-label="deleteDiv" aria-describedby="basic-addon1">
+                        
+
+                            </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    
+    
+    function createDiv() {
+        let i = document.getElementById("father").childElementCount;
+        let element = document.createElement("div");
+        element.setAttribute("id",i);
+        element.setAttribute("class","child");
+
+        let father = document.getElementById("father");
+        
+        
+        let content = document.createTextNode(i);
+
+        element.appendChild(content);
+
+        father.appendChild(element);
+        console.log(father);
+    }
+
+    function DeleteAllDivs() {
+        let father = document.getElementById("father");
+        father.innerHTML = "";
+        // while (father.firstChild) {
+        //     father.removeChild(father.firstChild);
+        // }
+
+    }
+
+    function DeleteAllOddDivs() {
+        // let father1 = document.getElementById("father");
+        // while (father1.firstChild)  {
+        //     console.log(father1.firstChild.textContent)
+        //     if ((father1.firstChild.textContent % 2) != 0) {
+        //         alert("entered");
+        //         father1.removeChild(father1.firstChild);
+        //     }
+        // }
+        let father = document.getElementById("father");
+        console.log(father);
+        let i = document.getElementById("father").childElementCount;
+        console.log(i);
+        if(i%2 == 0) {
+            i-=1;
+        }
+        for(let d = 1; d<=i; d+=2) {
+            let element = document.getElementById(d);
+            father.removeChild(element);
+        }
+
+    }
+
+    function DeleteSelectedDiv() {
+        let father = document.getElementById("father");
+        let selectedDiv = document.getElementById("selectedDiv").value;
+            let element = document.getElementById(selectedDiv);
+            father.removeChild(element);
+
+        
+
+    }
+    </script>
+  </body>
+</html>
